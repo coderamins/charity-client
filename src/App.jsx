@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
-import Sidebar from "./components/sidebar";
+import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 
 function App() {
