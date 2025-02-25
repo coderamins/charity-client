@@ -119,7 +119,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex sidebar">
+    <div className="flex sidebar 100vh">
       {/* بخش علاقه‌مندی‌ها */}
       <div className="h-screen w-16 p-2 flex flex-col items-center bg-gray">
         <PlusCircle className="cursor-pointer mb-4" size={24} />

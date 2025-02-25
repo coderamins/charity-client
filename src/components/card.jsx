@@ -1,13 +1,13 @@
-import { motion } from "framer-motion";
-
-const Card = ({ title, value }) => {
+const Card = ({ children, className }) => {
   return (
-    <motion.div 
-      className="bg-white p-6 rounded-xl shadow-md"
-      whileHover={{ scale: 1.05 }}
-    >
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="text-2xl font-bold">{value}</p>
-    </motion.div>
+    <div className={`bg-white rounded-lg shadow-md p-4 ${className}`}>
+      {children}
+    </div>
   );
 };
+
+const CardContent = ({ children, className }) => {
+  return <div className={`p-2 ${className}`}>{children}</div>;
+};
+
+export { Card, CardContent };

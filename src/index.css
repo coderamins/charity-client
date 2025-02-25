@@ -13,6 +13,7 @@
   font-family: 'vazir';
   line-height: 1.5;
   font-weight: 400;
+  background-color: #fefefe;
   /*
     color-scheme: light dark;
     color: rgba(34, 33, 33, 0.87);
@@ -74,6 +75,10 @@ button:focus-visible {
 
 .sidebar a {
   color: #1a1a1a !important;
+}
+
+.dir-ltr{
+  direction: ltr;
 }
 
 @media (prefers-color-scheme: light) {
