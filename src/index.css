@@ -81,6 +81,14 @@ button:focus-visible {
   direction: ltr;
 }
 
+.fav-layout{
+  border: 1px solid #c9c9c9;
+  border-radius: 100%;
+  padding: 3px;
+  box-shadow: 0px 1px 3px #dadada;
+  color: #c9c9c9 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

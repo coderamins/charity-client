@@ -7,8 +7,9 @@ import {
   Home, Users, Settings, Star, FileText, CreditCard, CheckCircle, Send, 
   UserPlus, Clock, MessageCircle, Folder,PlusCircle,ChevronRight,ChevronDown, Briefcase, ClipboardList, 
   FilePlus, FileCheck, Heart, Activity, Gift, Flag, TrendingUp, FileBarChart, 
-  FileSearch, Wallet, FileTextIcon, Database ,ChevronRightCircle,GanttChart,Menu
+  FileSearch, Wallet, FileTextIcon, Database,Grip ,ChevronRightCircle,GanttChart,Menu
 } from "lucide-react";
+import { toAbsolouteUrl } from "../helpers/absolouteUrl";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -121,10 +122,10 @@ const Sidebar = () => {
   return (
     <div className="flex sidebar 100vh">
       {/* بخش علاقه‌مندی‌ها */}
-      <div className="h-screen w-16 p-2 flex flex-col items-center bg-gray">
+      <div className="w-16 p-2 flex flex-col items-center bg-gray border-l border-solid border-gray-300">
         <PlusCircle className="cursor-pointer mb-4" size={24} />
         {favorites.map((fav, index) => (
-          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center">
+          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center fav-layout " >
             {fav.icon}
             <span className="text-xs">{fav.name}</span>
           </Link>
@@ -132,8 +133,9 @@ const Sidebar = () => {
       </div>
 
       {/* منوی اصلی */}
-      <div className={`bg-gray-100 text-gray-600 h-screen p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
+      <div className={`bg-gray-50 text-gray-600 p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
         <div className="flex items-center justify-between">
+        <img src={toAbsolouteUrl('/taha-logo.png')} alt="Logo" className="w-8 h-8 mr-2" />
           {isOpen && <h3 className="">موئسسه خیریه طه</h3>}
 
           <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
@@ -146,7 +148,7 @@ const Sidebar = () => {
         <ul className="mt-4 space-y-2 flex-1">
           {menuItems.map((menu, index) => (
             <li key={index} className="cursor-pointer">
-              <div className="flex items-center justify-between hover:bg-gray-300 rounded p-1" onClick={() => menu.subMenu && toggleSubMenu(menu.name)}>
+              <div className="flex items-center justify-between hover:bg-gray-300 transform motion-safe:hover:scale-105 rounded p-1" onClick={() => menu.subMenu && toggleSubMenu(menu.name)}>
                 <div className="flex items-center">
                   <span>{menu.icon}</span>
                   {isOpen && <span className="pr-2 ml-3 text-sm">{menu.name}</span>}

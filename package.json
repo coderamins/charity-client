@@ -19,6 +19,7 @@
     "init": "^0.1.2",
     "lucide-react": "^0.475.0",
     "npx": "^10.2.2",
+    "process": "^0.11.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
