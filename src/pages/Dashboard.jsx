@@ -1,7 +1,8 @@
 import { Card, CardContent } from "../components/card";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line,AreaChart, CartesianGrid, Area } from "recharts";
-import { Users, HandHeart, Filter, DollarSign, Calendar } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, AreaChart, CartesianGrid, Area } from "recharts";
+import { Users, HandHeart, Filter, ArrowUpRight, DollarSign, Calendar } from "lucide-react";
 import { useState } from "react";
+import { toAbsolouteUrl } from "../helpers/absolouteUrl";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,6 +73,12 @@ const Dashboard = () => {
     },
   ];
 
+  const data2 = [
+    { day: "Mon", value: 64 },
+    { day: "Tue", value: 52 },
+    { day: "Wed", value: 46 },
+  ];
+
   const filteredData = donationData.filter((item) => {
     const matchesMonth = selectedMonth ? item.name === selectedMonth : true;
     const matchesSearch =
@@ -121,6 +128,8 @@ const Dashboard = () => {
           </div>
         </CardContent>
       </Card>
+
+      
 
       <Card className="col-span-6 col-span-2 p-4 ">
         <h3 className="text-md font mb-2">نمودار کمک‌های مالی</h3>
@@ -238,6 +247,35 @@ const Dashboard = () => {
           </table>
         </div>
       </Card>
+
+      <div className="bg-white rounded-2xl shadow-lg p-5 w-80">
+        {/* عنوان و مبلغ */}
+        <h3 className="text-gray-500 text-sm">مجموع کمک‌های مالی</h3>
+        <p className="text-2xl font-bold mt-1">۶.۳۲ میلیارد تومان</p>
+
+        {/* توضیحات پرداخت */}
+        <div className="bg-gray-100 p-4 rounded-xl mt-4 flex items-center justify-between">
+          <div>
+            <p className="text-gray-800 font-medium">پرداخت‌های ضروری</p>
+            <p className="text-gray-500 text-sm">مبالغ تخصیص یافته</p>
+          </div>
+          <ArrowUpRight className="text-gray-600" />
+        </div>
+
+        {/* لیست کاربران */}
+        <div className="flex items-center mt-4 space-x-[-10px]">
+          <img className="w-10 h-10 rounded-full border-2 border-white" src={toAbsolouteUrl('/charity-persons (1).png')} alt="User1" />
+          <img className="w-10 h-10 rounded-full border-2 border-white" src={toAbsolouteUrl('/charity-persons (2).png')} alt="User2" />
+          <img className="w-10 h-10 rounded-full border-2 border-white" src={toAbsolouteUrl('/charity-persons (3).png')} alt="User3" />
+
+          {/* دکمه تعداد باقی‌مانده */}
+          <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm border-2 border-white">
+            +۸
+          </div>
+        </div>
+      </div>
+
+      
 
     </div>
   );
