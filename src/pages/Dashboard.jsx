@@ -248,7 +248,7 @@ const Dashboard = () => {
         </div>
       </Card>
 
-      <div className="bg-white rounded-2xl shadow-lg p-5 w-80">
+      <div className="bg-white rounded-2xl shadow-lg p-5 w-80 h-75">
         {/* عنوان و مبلغ */}
         <h3 className="text-gray-500 text-sm">مجموع کمک‌های مالی</h3>
         <p className="text-2xl font-bold mt-1">۶.۳۲ میلیارد تومان</p>

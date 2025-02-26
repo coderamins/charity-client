@@ -52,7 +52,7 @@ export default function CreateDonation() {
             <h2 className="text-xl font-bold mb-4">فرم ثبت کمک مالی</h2>
             {successMessage && <p className="text-green-600">{successMessage}</p>}
             <form onSubmit={handleSubmit(onSubmit)} className="">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mt-4">
                     <div>
                         <label className="block">نام اهداکننده:</label>
                         <input {...register("donorName")} className="w-full p-2 border border-gray-300 rounded" />
@@ -64,7 +64,7 @@ export default function CreateDonation() {
                         <p className="text-red-500">{errors.email?.message}</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mt-4">
                     <div >
                         <label className="block">شماره تماس:</label>
                         <input {...register("phone")} className="w-80 p-2 border border-gray-300 rounded" />
@@ -82,7 +82,7 @@ export default function CreateDonation() {
                 </div>
 
                 {donationType === "cash" && (
-                    <div>
+                    <div className="mt-4">
                         <label className="block">مبلغ (تومان):</label>
                         <input type="number" {...register("amount")} className="w-full p-2 border rounded" />
                         <p className="text-red-500">{errors.amount?.message}</p>
@@ -90,14 +90,14 @@ export default function CreateDonation() {
                 )}
 
                 {donationType === "non-cash" && (
-                    <div>
+                    <div className="mt-4">
                         <label className="block">جزئیات کمک غیرنقدی:</label>
                         <textarea {...register("itemDescription")} className="w-full p-2 border border-gray-300 rounded"></textarea>
                         <p className="text-red-500">{errors.itemDescription?.message}</p>
                     </div>
                 )}
 
-                <div>
+                <div className="mt-4">
                     <label className="block">توضیحات اضافی (اختیاری):</label>
                     <textarea {...register("description")} className="w-full p-2 border border-gray-300 rounded"></textarea>
                 </div>

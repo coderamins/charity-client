@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { menu } from "framer-motion/client";
-import { 
-  HandHeart, UserCheck, UsersRound, Calendar, DollarSign, Newspaper, 
-  Home, Users, Settings, Star, FileText, CreditCard, CheckCircle, Send, 
-  UserPlus, Clock, MessageCircle, Folder,PlusCircle,ChevronRight,ChevronDown, Briefcase, ClipboardList, 
-  FilePlus, FileCheck, Heart, Activity, Gift, Flag, TrendingUp, FileBarChart, 
-  FileSearch, Wallet, FileTextIcon, Database,Grip ,ChevronRightCircle,GanttChart,Menu
+import {
+  HandHeart, UserCheck, UsersRound, Calendar, DollarSign, Newspaper,
+  Home, Users, Settings, Star, FileText, CreditCard, CheckCircle, Send,
+  UserPlus, Clock, MessageCircle, Folder, PlusCircle, ChevronRight, ChevronDown, Briefcase, ClipboardList,
+  FilePlus, FileCheck, Heart, Activity, Gift, Flag, TrendingUp, FileBarChart,
+  FileSearch, Wallet, FileTextIcon, Database, Grip, ChevronRightCircle, GanttChart, Menu
 } from "lucide-react";
 import { toAbsolouteUrl } from "../helpers/absolouteUrl";
 
@@ -40,7 +40,7 @@ const Sidebar = () => {
       name: "مدیریت کمک‌های مالی",
       icon: <HandHeart size={24} />,
       subMenu: [
-        { name: "ثبت کمک‌های مالی (نقدی و غیرنقدی)", path: "/create-donation", icon: <CreditCard size={24} /> },
+        { name: "ثبت کمک‌های مالی (نقدی و غیرنقدی)", path: "/donations", icon: <CreditCard size={24} /> },
         { name: "نمایش لیست پرداخت‌ها", path: "/donations/list", icon: <FileText size={24} /> },
         { name: "صدور و ارسال رسید کمک مالی", path: "/donations/receipt", icon: <Send size={24} /> },
         { name: "پیگیری وضعیت کمک‌ها", path: "/donations/track", icon: <CheckCircle size={24} /> },
@@ -125,7 +125,7 @@ const Sidebar = () => {
       <div className="w-16 p-2 flex flex-col items-center bg-gray border-l border-solid border-gray-300">
         <PlusCircle className="cursor-pointer mb-4" size={24} />
         {favorites.map((fav, index) => (
-          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center fav-layout " >
+          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center fav-layout bg-gray-100" >
             {fav.icon}
             <span className="text-xs">{fav.name}</span>
           </Link>
@@ -133,16 +133,16 @@ const Sidebar = () => {
       </div>
 
       {/* منوی اصلی */}
-      <div className={`bg-gray-50 h-screen text-gray-600 p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
+      <div className={`bg-gray-50 text-gray-600 p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
         <div className="flex items-center justify-between">
-        <img src={toAbsolouteUrl('/taha-logo.png')} alt="Logo" className="w-8 h-8 mr-2" />
+          <img src={toAbsolouteUrl('/taha-logo.png')} alt="Logo" className="w-8 h-8 mr-2" />
           {isOpen && <h3 className="">موئسسه خیریه طه</h3>}
 
           <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
-            {isOpen ? <ChevronRight size={24} />  : <Grip size={24} />}
-          </span>          
+            {isOpen ? <ChevronRight size={24} /> : <Grip size={24} />}
+          </span>
         </div>
-        
+
         {isOpen && <hr className="mt-6 mb-2 border-t w-full border-gray-200" />}
 
         <ul className="mt-4 space-y-2 flex-1">
@@ -167,8 +167,8 @@ const Sidebar = () => {
                         {/* {sub.icon} */}
                         <span className="ml-2">{sub.name}</span>
                       </Link>
-                      <Star 
-                        size={16} 
+                      <Star
+                        size={16}
                         className={`cursor-pointer ${favorites.some(fav => fav.name === sub.name) ? "text-yellow-500" : "text-gray-400"}`}
                         onClick={() => toggleFavorite(sub)}
                       />
@@ -180,6 +180,25 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
+
+      {/* بخش Used Space در پایین سایدبار */}
+      {/* <div className="mt-auto bg-white text-black p-4 rounded-lg ">
+        <h5 className="font text-gray-600">مبلغ کمکهای جمع آوری شده</h5>
+        <div className="flex text-right mt-2">
+          <span></span>
+          <span>تا تاریخ 1403/11/05</span>
+        </div>
+        <div className="mt-3">
+          <div className="h-2 bg-gray-300 rounded-full">
+            <div className="h-2 bg-green-500 rounded-full" style={{ width: '71%' }}></div>
+          </div>
+          <div className="flex justify-between mt-2 text-xs">
+            <span>1 میلیون</span>
+            <span>71 میلیون</span>
+            <span>100 میلیون </span>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 };

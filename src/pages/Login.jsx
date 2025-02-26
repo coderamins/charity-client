@@ -2,12 +2,33 @@ import { useState } from "react";
 import { Eye, EyeOff, User } from "lucide-react"; // Import necessary icons
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { toAbsolouteUrl } from "../helpers/absolouteUrl";
+import Captcha from "../components/Captcha";
 
 function Login() {
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [captchaInput, setCaptchaInput] = useState("");
+    const [captchaError, setCaptchaError] = useState(false);
+    const [generatedCaptcha, setGeneratedCaptcha] = useState("");
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
+    };
+
+    const handleCaptchaChange = (captchaCode) => {
+        setGeneratedCaptcha(captchaCode);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // بررسی کپچا
+        if (captchaInput !== generatedCaptcha) {
+            setCaptchaError(true);
+            return;
+        }
+
+        // ادامه پردازش فرم
+        alert("فرم ارسال شد");
     };
 
     return (
@@ -62,11 +83,28 @@ function Login() {
                             </div>
                         </div>
                     </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700">کد امنیتی</label>
+                        <Captcha onChange={handleCaptchaChange} />
+                        <input
+                            type="text"
+                            className="w-full p-3 mt-2 border border-gray-200 rounded-lg"
+                            placeholder="کد امنیتی را وارد کنید"
+                            value={captchaInput}
+                            onChange={(e) => setCaptchaInput(e.target.value)}
+                        />
+                        {captchaError && (
+                            <p className="text-red-500 text-sm mt-2">کد امنیتی صحیح نیست!</p>
+                        )}
+                    </div>
+
+
                     <button className="w-full bg-gray-100 !bg-gray-100 text-gray-600 py-3 rounded-lg hover:!bg-blue-100 transition">
                         ورود</button>
 
                 </form>
-                <p className="mt-4 text-gray-600">
+                <p className="absolute bottom-4 text-gray-600 mb-4">
                     کلمه عبور را فراموش کردید؟ <a href="#" className="text-blue-500">بازیابی کلمه عبور</a>
                 </p>
             </div>
