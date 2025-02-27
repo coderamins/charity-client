@@ -1,12 +1,23 @@
 import { Card, CardContent } from "../components/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, AreaChart, CartesianGrid, Area } from "recharts";
 import { Users, HandHeart, Filter, ArrowUpRight, DollarSign, Calendar } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toAbsolouteUrl } from "../helpers/absolouteUrl";
+import { SkeletonLoader } from "../components/SkeletonLoader";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { CustomSkeleton } from "../components/CustomSkeleton";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // پس از ۲ ثانیه داده‌ها لود می‌شوند
+    }, 2000);
+  }, []);
 
   const donationData = [
     // { name: "تیر", amount: 15000, donors: 35 },
@@ -90,21 +101,33 @@ const Dashboard = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 p-5">
       <Card className="col-span-3 shadow">
-        <CardContent className="flex items-center p-4">
-          <HandHeart size={32} className="text-red-500 p-1" />
-          <div className="ml-3">
-            <h3 className="text-lg font-bold">کمک‌های مالی</h3>
-            <p className="text-gray-600">مجموع: 45,000,000 تومان</p>
-          </div>
-        </CardContent>
+        {loading ? (
+          <CustomSkeleton linecount={3} />
+        ) : (
+          <CardContent className="flex items-center p-4">
+            {loading ? (<CustomSkeleton linecount={1} />) : (
+              <HandHeart size={32} className="text-red-500 p-1" />)
+            }
+            <div className="ml-3">
+              <h3 className="text-lg font-bold">کمک‌های مالی</h3>
+              <p className="text-gray-600">مجموع: 45,000,000 تومان</p>
+            </div>
+          </CardContent>
+        )}
       </Card>
+
+
 
       <Card className="col-span-3 shadow bg-blend-normal">
         <CardContent className="flex items-center p-4">
-          <Users size={32} className="text-blue-500 p-1" />
+          {loading ? (
+            <SkeletonLoader className="w-10 h-10 rounded-full" />
+          ) : (
+            <Users size={32} className="text-blue-500 p-1" />
+          )}
           <div className="ml-3">
-            <h3 className="text-lg font-bold">تعداد خیرین</h3>
-            <p className="text-gray-600">۵۳۰ نفر</p>
+            <h3 className="text-lg font-bold">{loading ? <SkeletonLoader className="w-24 h-5" /> : "تعداد خیرین"}</h3>
+            <p className="text-gray-600">{loading ? <SkeletonLoader className="w-24 h-5" /> : "۵۳۰ نفر"}</p>
           </div>
         </CardContent>
       </Card>
@@ -129,7 +152,7 @@ const Dashboard = () => {
         </CardContent>
       </Card>
 
-      
+
 
       <Card className="col-span-6 col-span-2 p-4 ">
         <h3 className="text-md font mb-2">نمودار کمک‌های مالی</h3>
@@ -275,7 +298,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      
+
 
     </div>
   );
