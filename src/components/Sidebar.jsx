@@ -35,12 +35,12 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { name: "داشبورد", icon: <Home size={24} />, path: "/" },
+    { name: "داشبورد",path: "/", icon: <Home size={24} /> },
     {
       name: "مدیریت کمک‌های مالی",
       icon: <HandHeart size={24} />,
       subMenu: [
-        { name: "ثبت کمک‌های مالی (نقدی و غیرنقدی)", path: "/donations", icon: <CreditCard size={24} /> },
+        { name: "ثبت کمک‌های مالی (نقدی و غیرنقدی)", path: "/create-donation", icon: <CreditCard size={24} /> },
         { name: "نمایش لیست پرداخت‌ها", path: "/donations/list", icon: <FileText size={24} /> },
         { name: "صدور و ارسال رسید کمک مالی", path: "/donations/receipt", icon: <Send size={24} /> },
         { name: "پیگیری وضعیت کمک‌ها", path: "/donations/track", icon: <CheckCircle size={24} /> },
@@ -125,7 +125,7 @@ const Sidebar = () => {
       <div className="w-16 p-2 flex flex-col items-center bg-gray border-l border-solid border-gray-300">
         <PlusCircle className="cursor-pointer mb-4" size={24} />
         {favorites.map((fav, index) => (
-          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center fav-layout bg-gray-100" >
+          <Link key={index} to={fav.path} className="mb-4 flex flex-col items-center fav-layout" >
             {fav.icon}
             <span className="text-xs">{fav.name}</span>
           </Link>
@@ -133,7 +133,7 @@ const Sidebar = () => {
       </div>
 
       {/* منوی اصلی */}
-      <div className={`bg-gray-50 text-gray-600 p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
+      <div className={`h-screen bg-gray-50 text-gray-600 p-5 pb-5 transition-all duration-300 flex-col ${isOpen ? "w-64" : "w-16"}`}>
         <div className="flex items-center justify-between">
           <img src={toAbsolouteUrl('/taha-logo.png')} alt="Logo" className="w-8 h-8 mr-2" />
           {isOpen && <h3 className="">موئسسه خیریه طه</h3>}

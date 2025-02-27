@@ -5,7 +5,8 @@ import Settings from "./pages/Settings";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import CreateDonation from "./pages/CreateDonation";
+import CreateDonation from "./pages/donations/CreateDonation";
+import Payments from "./pages/donations/Payments";
 
 function Layout() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function Layout() {
           <Route path="/users" element={<Users />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/create-donation" element={<CreateDonation />} />
+          <Route path="donations/list" element={<Payments />} />
         </Routes>
       </div>
     </div>
